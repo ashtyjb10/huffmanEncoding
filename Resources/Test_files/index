@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+
+<html lang = "en">
+	<?php
+		//include files
+		include 'templates/barsAndBrewTemplate.inc.php';
+		include 'php/addGuest.php';
+		//
+		$subNotify = 'Welcome! Please sign the guest book, thanks!';
+		if (isset($_GET['s']))
+		{
+			$subNotify = 'Thanks for visiting, '. $_GET['s'];
+		}
+		if (isset($_GET['e']))
+		{
+			$subNotify = 'Any name will do';
+			$nameError = '*Please enter a name';
+		}
+	?>
+	<head>
+		<title><?php echo "$navOption_1";?></title>
+		<link rel = "stylesheet" href = "css/homeLayout.css">
+		<meta charset="UTF-8">
+		<meta name="keywords" content="beer, beers, bar, bars, brew, brews, breweries, brewery, nightlife, night life, going out, downtown, pool, billiards, darts,
+		reviews, events, festivals, festival, event, local,">
+		<meta name = "author" content = "Andrew R. Worley">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="js/ajaxTest.js"></script>
+	</head>
+	
+	<body>
+		<div id = "pageWrapper">
+			<header id = "banner">
+				<div id = "logo">
+					<a href = "index" class = "logoBtn"><img src="images/constructionTape.png" width = "400" height = "80"></a>
+				</div>	
+			</header>
+			<nav id = "topNav">
+				<ul>
+					<li> <a href ="index" class = "pageButton"><?php echo "$navOption_1";?></a></li>
+					<li> <a href ="events" class = "buttons"><?php echo "$navOption_2";?></a></li>
+					<li> <a href ="bars" class = "buttons"><?php echo "$navOption_3";?></a>
+						<ul>
+							<li> <a href ="#" class = "buttons">Salt Lake</a></li>
+							<li> <a href ="#" class = "buttons">South Salt Lake</a></li>
+							<li> <a href ="#" class = "buttons">Draper</a></li>
+							<li> <a href ="#" class = "buttons">Sandy</a></li>
+						</ul>
+					</li>
+					<li> <a href ="breweries" class = "buttons"><?php echo "$navOption_4";?></a></li>
+					<li> <a href ="about" class = "buttons"><?php echo "$navOption_5";?></a><li>
+				</ul>
+			</nav>
+			<main id = "contentWrapper">
+				<aside id = "sidebarLeft">
+					<div id = "sidebarTop" class = "box">
+						<span class = "title">Welcome!</span><br>
+						<span class = "text">This site will have important information on bars and breweries in my area (SLC, UT). Come back soon for more information!</span>
+					</div>
+					<div id = "sidebarMiddle" class = "box">
+						<span class = "title">Bars</span><br>
+						<span class = "text">Finding the best place to grab a drink can be fun. It can also be frustrating when rotten customers leave bad reviews for great spots. Bars will be properly represented here.</span>
+					</div>
+					<div id = "sidebarBottom" class = "box">
+						<span class = "title">Breweries</span><br>
+						<span class = "text">Visiting local breweries is a great way to appreciate American(U.S.) achievement. Every area has unique flavours to offer to the expanding roster of great U.S. brew.</span>
+					</div>
+				</aside>
+				<section id = "pageContent">
+							<img src="images/fatsLiveBand.png" width = "200" height = "210" class = "thumbnail">
+							<img src="images/fatsLiveBand.png" width = "200" height = "210" class = "thumbnail">
+							<img src="images/fatsLiveBand.png" width = "200" height = "210" class = "thumbnail">
+							<img src="images/fatsLiveBand.png" width = "200" height = "210" class = "thumbnail">
+							<img src="images/fatsLiveBand.png" width = "200" height = "210" class = "thumbnail">
+							<img src="images/fatsLiveBand.png" width = "200" height = "210" class = "thumbnail">
+							<img src="images/fatsLiveBand.png" width = "200" height = "210" class = "thumbnail">
+							<img src="images/fatsLiveBand.png" width = "200" height = "210" class = "thumbnail">
+							<img src="images/fatsLiveBand.png" width = "200" height = "210" class = "thumbnail">
+				</section>
+				<aside id = "guestHolder">
+					<a name = "pageBottom"></a>
+					<div id = "guestForm" class = "box">
+						<div id = "guestTitle">
+							<span class = "title">Guest book</span>
+						</div>
+							<div id = "guestNotify">
+								<span id = "gbStatus" class = "text"> <?php echo $subNotify; ?></span>
+						</div>
+						<form action = "php/addGuest.inc.php" method = "POST">
+							<div id = "guestInputs">
+								<div id ="guestN">
+									<span class = "text"> Name: </span>
+									<input type = "text" id = "firstName" name = "firstName" size = "6" value = "<?php echo $firstName ?>">
+								</div>
+								<div id ="guestC">
+									<span class = "text"> City: </span>
+									<input type = "text" id = "city" name = "city" size = "4" value = "<?php echo $city ?>">
+								</div>
+								<div id ="guestCo">
+									<span class = "text"> Country: </span>
+									<input type = "text" id = "country" name = "country" size = "5" value = "<?php echo $country ?>">
+								</div>
+							</div>
+							<div id = "guestButton">
+								<input class = "buttons" type = "submit" name = "submit" id = "submit" value = "PHP:Submit">
+								<button class = "buttons" type = "button" onClick = "firstAjax()">Ajax:Submit</button>
+							</div>
+							<div id = "guestErrors">
+								<span class = "textError"> <?php echo $nameError;?></span>
+							</div>
+						</form>
+					</div>
+				</aside>
+			</main>
+			<footer id = "pageFooter">
+				<nav id = "bottomNav">
+					<a href ="index" class = "pageButton"><?php echo "$navOption_1";?></a>
+					<a href ="events" class = "buttons"><?php echo "$navOption_2";?></a>
+					<a href ="bars" class = "buttons"><?php echo "$navOption_3";?></a>
+					<a href ="breweries" class = "buttons"><?php echo "$navOption_4";?></a>
+					<a href="/php/viewRecords.php" class = "buttons"><?php echo "$navOption_6";?></a>
+					<a href ="About" class = "buttons"><?php echo "$navOption_5";?></a>
+					<a href="mailto:<?php echo "$email";?>?subject=About BarsAndBrew" class = "contactInfo"><?php echo "$email_Link";?></a>
+				</nav>
+			</footer>
+		</div>
+	</body>
+</html>
